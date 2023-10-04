@@ -17,6 +17,7 @@
     "react-hook-form": "^7.46.1"
   },
   "devDependencies": {
-    "@svgr/webpack": "^8.1.0"
+    "@svgr/webpack": "^8.1.0",
+    "sass": "^1.68.0"
   }
 }

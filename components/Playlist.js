@@ -49,7 +49,7 @@ export default function Playlist({tracksToAdd, setTracksToAdd}) {
         try {
             const response = await fetch('https://api.spotify.com/v1/me', {
                 headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+                    Authorization: 'Bearer ' + sessionStorage.getItem('access_token'),
                 },
             });
             if (response.ok) {
@@ -72,7 +72,7 @@ export default function Playlist({tracksToAdd, setTracksToAdd}) {
             const response = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
                   method: "POST",
                   headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+                    Authorization: 'Bearer ' + sessionStorage.getItem('access_token'),
                     'Content-Type': 'application/json',
                   },
                   body: JSON.stringify({
@@ -100,7 +100,7 @@ export default function Playlist({tracksToAdd, setTracksToAdd}) {
             const response = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
                 method: "POST",
                 headers: {
-                  Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+                  Authorization: 'Bearer ' + sessionStorage.getItem('access_token'),
                   'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
@@ -119,7 +119,7 @@ export default function Playlist({tracksToAdd, setTracksToAdd}) {
     };
 
     useEffect(() => {
-        if (localStorage.getItem('access_token')) {
+        if (sessionStorage.getItem('access_token')) {
             createPlaylist();
         }
     }, [playlistName, playlistDescription, isPublic]);

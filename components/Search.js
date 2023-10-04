@@ -53,7 +53,7 @@ export default function Search({tracksToAdd, setTracksToAdd}) {
                 try {
                     const response = await fetch('https://api.spotify.com/v1/search?q=' + searchValue + '&type=track&limit=10', {
                         headers: {
-                            Authorization: 'Bearer ' + localStorage.getItem('access_token'),
+                            Authorization: 'Bearer ' + sessionStorage.getItem('access_token'),
                         },
                     });
                     if (response.ok) {

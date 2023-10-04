@@ -13,8 +13,6 @@ export default function IndexPage() {
 
     // To handle received token
     useEffect(() => {
-        let redirectToLogin = false;
-
         const handleToken = () => {
             const accessTokenFragment = window.location.hash.slice(1); // Take string after # symbol
             const accessToken = new URLSearchParams(accessTokenFragment).get("access_token"); // Take access_token param from URL search parameters
@@ -23,28 +21,16 @@ export default function IndexPage() {
     
             if (accessToken) {
                 const expirationTime = Date.now() + expiresIn * 1000;
-                localStorage.setItem('access_token', accessToken); // Save token to localStorage
-                localStorage.setItem('access_token_expires_at', expirationTime);
+                sessionStorage.setItem('access_token', accessToken); // Save token to localStorage
+                sessionStorage.setItem('access_token_expires_at', expirationTime);
                 setAccessTokenExpiresAt(expirationTime)
             } else {
                 setShowContent(false);
-                redirectToLogin = true;
+                router.push('/login');
             }
         };
-        
-        // Проверить наличие accessToken в localStorage
-        const storedAccessToken = localStorage.getItem('access_token');
-        if (storedAccessToken) {
-            // Если accessToken уже есть, то нет необходимости выполнять handleToken
-            return;
-        }
 
         handleToken();
-
-        // Перенос редиректа здесь, после завершения обработки токена
-        if (redirectToLogin) {
-            router.push('/login');
-        }
     }, []);
 
     useEffect(() => {
@@ -63,9 +49,6 @@ export default function IndexPage() {
         <div>
             <Head>
                 <title>Spotiful</title>
-                <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-                <meta httpEquiv="Pragma" content="no-cache" />
-                <meta httpEquiv="Expires" content="0" />
             </Head>
             {showContent && (
                 <div>
