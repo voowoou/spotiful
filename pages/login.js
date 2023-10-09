@@ -3,7 +3,7 @@ import Head from "next/head";
 import Icon from "@/public/icon.svg";
 import SpotifyIcon from "@/public/spotify_icon.svg";
 import { useRouter } from "next/router";
-import styles from "./login.module.sass";
+import styles from "@/styles/login.module.sass";
 
 export default function Login() {
     const router = useRouter();
@@ -23,14 +23,14 @@ export default function Login() {
                 <title>Log in</title>
             </Head>
             <div className={styles.container}>
-                <div>
-                    <Icon />
-                    <h1>Search by songs and create your Spotify playlist</h1>
-                    <p>This app uses your profile credentials to handle its main feature</p>
-                </div>
+                <header>
+                    <Icon className={styles.spotiful} />
+                    <h1 className={styles.h1}>Search by songs and create your Spotify playlist</h1>
+                    <p>This app uses your Spotify profile credentials to handle its main feature</p>
+                </header>
                 <div>
                     <a href="#" onClick={redirectToSpotifyAuth}>
-                        <SpotifyIcon />
+                        <SpotifyIcon className={styles.spotify} />
                         <span>Log in via Spotify</span>
                     </a>
                 </div>
