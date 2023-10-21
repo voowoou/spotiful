@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { useForm, Controller } from "react-hook-form";
+import MinusIcon from "@/public/minus_icon.svg";
+import styles from "@/styles/playlist.module.sass";
+import listStyles from "@/styles/list.module.sass";
 
 function TracksToAdd({tracksToAdd, setTracksToAdd}) {
 
@@ -12,22 +15,21 @@ function TracksToAdd({tracksToAdd, setTracksToAdd}) {
 
     const trackList = tracksToAdd.map((track, index) => 
         <li key = {`${track.id}-${index}`}>
-            <div>
-                <span>{track.name}</span>
-                <div>
-                    <span>
-                        {(track.artists).map((artist, index) =>
-                            index !== (track.artists.length - 1) ? `${artist.name}, ` : artist.name
-                        )}
-                    </span>
-                    <span> | {track.album.name}</span>
-                </div>
+            <div className={listStyles.trackInfo} >
+                <span className={listStyles.trackName} >{track.name}</span>
+                <p className={listStyles.trackArtist} >
+                    {(track.artists).map((artist, index) =>
+                        index !== (track.artists.length - 1) ? `${artist.name}, ` : artist.name
+                    )}
+                </p>
             </div>
-            <button onClick={() => handleClick(track)}>-</button>
+            <button onClick={() => handleClick(track)} className={listStyles.button} >
+                <MinusIcon className={listStyles.icon} />
+            </button>
         </li>    
     )
 
-    return <ul>{trackList}</ul>;
+    return <ul className={listStyles.ul}>{trackList}</ul>;
 };
 
 export default function Playlist({tracksToAdd, setTracksToAdd}) {
@@ -125,12 +127,11 @@ export default function Playlist({tracksToAdd, setTracksToAdd}) {
     }, [playlistName, playlistDescription, isPublic]);
 
     return (
-        <div>
+        <div className={styles.playlistContainer} >
             <h3>Your new Spotify playlist</h3>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div>
-                    <div>
-                        <label htmlFor="playlistName">Name</label>
+                    <label className={styles.textLabel}>Name
                         <Controller 
                             name="playlistName"
                             control={control}
@@ -138,13 +139,13 @@ export default function Playlist({tracksToAdd, setTracksToAdd}) {
                                 <input 
                                     {...field}
                                     type="text"
-                                    id="playlistName"
                                 />
                             )}
                         />
-                    </div>
-                    <div>
-                        <label htmlFor="playlistDescription">Description</label>
+                    </label>
+                </div>
+                <div>
+                    <label className={styles.textLabel}>Description
                         <Controller 
                             name="playlistDescription"
                             control={control}
@@ -152,46 +153,51 @@ export default function Playlist({tracksToAdd, setTracksToAdd}) {
                                 <input 
                                     {...field}
                                     type="text"
-                                    id="playlistDescription"
+                                    className={styles.inputField}
                                 />
                             )}
                         />
-                    </div>
-                    <div>
-                        <span>Privacy</span>
-                        <Controller 
-                            name="privacy"
-                            control={control}
-                            render={ ({field}) => (
-                                <input 
-                                    {...field}
-                                    type="radio"
-                                    id="private"
-                                    checked={field.value === "false"}
-                                    onChange={() => field.onChange("false")}
-                                />
-                            )}
-                        />
-                        <label htmlFor="private">Private</ label>
-                        <Controller 
-                            name="privacy"
-                            control={control}
-                            render={ ({field}) => (
-                                <input 
-                                    {...field}
-                                    type="radio"
-                                    id="public"
-                                    checked={field.value === "true"}
-                                    onChange={() => field.onChange("true")}
-                                />
-                            )}
-                        />
-                        <label htmlFor="public" >Public</ label>
-                    </div>
+                    </label>
                 </div>
-                <TracksToAdd tracksToAdd={tracksToAdd} setTracksToAdd={setTracksToAdd} />
-                <input type="submit" value="SAVE NEW PLAYLIST" />
+                <div>
+                    <span>Privacy
+                        <label>
+                            <Controller 
+                                name="privacy"
+                                control={control}
+                                render={ ({field}) => (
+                                    <input 
+                                        {...field}
+                                        type="radio"
+                                        checked={field.value === "false"}
+                                        onChange={() => field.onChange("false")}
+                                        className={styles.radioDefault}
+                                    />
+                                )}
+                            />
+                            <span className={styles.radioCustom}></span>
+                        Private</ label>
+                        <label>
+                            <Controller 
+                                name="privacy"
+                                control={control}
+                                render={ ({field}) => (
+                                    <input 
+                                        {...field}
+                                        type="radio"
+                                        checked={field.value === "true"}
+                                        onChange={() => field.onChange("true")}
+                                        className={styles.radioDefault}
+                                    />
+                                )}
+                            />
+                            <span className={styles.radioCustom}></span>
+                        Public</ label>
+                    </span>
+                </div>
+                <input type="submit" value="SAVE NEW PLAYLIST" className={styles.saveButton} />
             </form>
+            <TracksToAdd tracksToAdd={tracksToAdd} setTracksToAdd={setTracksToAdd} />
         </div>
     );
 };

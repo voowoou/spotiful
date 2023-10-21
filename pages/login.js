@@ -22,7 +22,7 @@ export default function Login() {
             <Head>
                 <title>Log in</title>
             </Head>
-            <div className={styles.container}>
+            <div className={styles.loginContainer}>
                 <header>
                     <Icon className={styles.spotiful} />
                     <h1 className={styles.h1}>Search by songs and create your Spotify playlist</h1>

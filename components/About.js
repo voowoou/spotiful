@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "@/styles/about.module.sass";
 
 export default function About() {
     return (
-        <div>
+        <div id="about-section" className={styles.aboutContainer}>
             <h2>INSTRUCTIONS & ABOUT</h2> 
             <div>
                 <p>

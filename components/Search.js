@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import PlusIcon from "@/public/plus_icon.svg";
+import styles from "@/styles/search.module.sass";
+import listStyles from "@/styles/list.module.sass";
 
 function SearchBar({setSearchValue}) {
     const handleChange = (event) => {
@@ -6,13 +9,11 @@ function SearchBar({setSearchValue}) {
     }
 
     return (
-        <form>
-            <input
-                type="text" 
-                name="search-field"
-                onChange={handleChange}
-            />
-        </form>
+        <input className={styles.searchField}
+            type="text" 
+            name="search-field"
+            onChange={handleChange}
+        />
     );
 };
 
@@ -24,23 +25,22 @@ function SearchList({tracksArray, tracksToAdd, setTracksToAdd}) {
     };
 
     const searchResults = tracksArray.map(track =>
-        <li key={track.id}>
-            <div>
-                <span>{track.name}</span>
-                <div>
-                    <span>
-                        {(track.artists).map((artist, index) =>
-                            index !== (track.artists.length - 1) ? `${artist.name}, ` : artist.name
-                        )}
-                    </span>
-                    <span> | {track.album.name}</span>
-                </div>
+        <li key={track.id} >
+            <div className={listStyles.trackInfo} >
+                <span className={listStyles.trackName} >{track.name}</span>
+                <p className={listStyles.trackArtist} >
+                    {(track.artists).map((artist, index) =>
+                        index !== (track.artists.length - 1) ? `${artist.name}, ` : artist.name
+                    )}
+                </p>
             </div>
-            <button onClick={() => handleClick(track)}>+</button>
+            <button onClick={() => handleClick(track)} className={listStyles.button} >
+                <PlusIcon className={listStyles.icon} />
+            </button>
         </li>
     );
 
-    return <ul>{searchResults}</ul>;
+    return <ul className={listStyles.ul}>{searchResults}</ul>;
 };
 
 export default function Search({tracksToAdd, setTracksToAdd}) {
@@ -71,9 +71,11 @@ export default function Search({tracksToAdd, setTracksToAdd}) {
     }, [searchValue]);
 
     return (
-        <div>
+        <div className={styles.searchContainer} >
             <h3>Search by song name</h3>
-            <SearchBar setSearchValue={setSearchValue}/>
+            <SearchBar 
+                setSearchValue={setSearchValue}
+            />
             <SearchList 
                 tracksArray={tracksArray} 
                 tracksToAdd={tracksToAdd}

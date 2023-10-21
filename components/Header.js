@@ -1,15 +1,20 @@
 import React from "react";
 import Icon from "@/public/icon.svg";
+import styles from "@/styles/header.module.sass"
 
 export default function Header() {
     return (
-        <header>
+        <header className={styles.headerContainer}>
             <div>
-                <Icon />
+                <Icon className={styles.spotiful} />
             </div>
             <nav>
-                <span>PLAYLIST</span>
-                <span>INSTRUCTIONS & ABOUT</span>
+                <a href="#main-section">
+                    <span>PLAYLIST</span>
+                </a>
+                <a href="#about-section">
+                    <span>INSTRUCTIONS & ABOUT</span>
+                </a>
             </nav>
         </header>
     );
