@@ -1,5 +1,5 @@
 import React from "react";
-import Icon from "@/public/icon.svg";
+import Icon from "@/public/spotiful_icon.svg";
 import styles from "@/styles/header.module.sass"
 
 export default function Header() {
@@ -13,7 +13,7 @@ export default function Header() {
                     <span>PLAYLIST</span>
                 </a>
                 <a href="#about-section">
-                    <span>INSTRUCTIONS & ABOUT</span>
+                    <span>ABOUT</span>
                 </a>
             </nav>
         </header>

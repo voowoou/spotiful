@@ -1,17 +1,17 @@
 .playlistContainer
     display: flex
     flex-direction: column
-    width: 450px
+    width: 45%
+    min-width: 260px
     h3
         font-size: 1.5rem
         margin: 20px 0 30px 0
-
     form
         display: flex
         flex-direction: column
         margin-bottom: 40px
         div
-            margin-bottom: 30px
+            margin-bottom: 20px
             display: flex
             flex-wrap: nowrap
             .textLabel,
@@ -33,7 +33,7 @@
                     margin-left: 20px
                 label
                     font-weight: 400
-                    padding-left: 80px
+                    padding-left: 17%
                     display: flex
                     flex-wrap: nowrap
                     align-items: center
@@ -71,5 +71,9 @@
             &:hover
                 background-color: #FF6978
 
+@media screen and (max-width: 768px) 
+    .playlistContainer
+        width: 100%
+        margin-top: 20px
 
             

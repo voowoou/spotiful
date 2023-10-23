@@ -2,25 +2,37 @@
     display: flex
     justify-content: space-between
     align-items: center
-    height: 16vh
-
+    height: 8vw
+    margin-bottom: 10px
     nav
-        font-size: 2rem
+        font-size: 1.5rem
         font-weight: 600
-        width: 36vw
-        display: flex
-        align-items: center
-        justify-content: space-between
-        flex-wrap: wrap
-        
         a
             color: #FFFCF9
-            
-            :hover
+            margin-right: 3vw
+            &:hover
                 color:#FF6978
+            &:last-child
+                margin-right: 0
+    .spotiful
+        position: relative
+        top: 4px
+        height: 36px
+        svg
+            width: 100%
+            max-width: 140px
+            height: auto
+            overflow: hidden
 
-.spotiful
-    position: relative
-    top: 5px
-    height: 45px
-    width: auto
+@media screen and (max-width: 768px) 
+    .headerContainer
+        display: block
+        nav
+            margin-top: 15px
+            display: flex
+            justify-content: space-between
+            a
+                margin-right: 0
+                color: #FF6978
+        .spotiful
+            display: none

@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import Icon from "@/public/icon.svg";
+import Icon from "@/public/spotiful_icon.svg";
 import SpotifyIcon from "@/public/spotify_icon.svg";
 import { useRouter } from "next/router";
 import styles from "@/styles/login.module.sass";

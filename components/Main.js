@@ -9,7 +9,7 @@ export default function Main() {
     return (
         <div id="main-section" className={styles.mainContainer}>
             <h2>PLAYLIST</h2>
-            <div className={styles.searchPlaylist}>
+            <div className={styles.searchAndPlaylist}>
                 <Search tracksToAdd={tracksToAdd} setTracksToAdd={setTracksToAdd} />
                 <Playlist tracksToAdd={tracksToAdd} setTracksToAdd={setTracksToAdd}  />
             </div>

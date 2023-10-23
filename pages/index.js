@@ -46,9 +46,10 @@ export default function IndexPage() {
     }, [accessTokenExpiresAt]);
 
     return (
-        <div>
+        <div className="container">
             <Head>
                 <title>Spotiful</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
             {showContent && (
                 <div>

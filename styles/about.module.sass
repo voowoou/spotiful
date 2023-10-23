@@ -1,6 +1,7 @@
 .aboutContainer
     h2
-        font-size: 2rem
+        font-size: 1.5rem
+        font-weight: 600
     div
         display: flex
         justify-content: space-between
@@ -8,5 +9,26 @@
         p
             font-size: 1.25rem
             line-height: 2rem
-            width: 450px
+            width: 45%
+            min-width: 260px
+
+@media screen and (max-width: 1024px) 
+    .aboutContainer
+        div
+            flex-direction: column
+            p
+                width: 100%
+                margin-bottom: 2rem
+                &:last-child
+                    margin-bottom: 0
+
+@media screen and (max-width: 768px) 
+    .aboutContainer
+        h2
+            font-weight: 400
+        div
+            p
+                font-size: 1rem
+                line-height: 1.5rem
+
             
