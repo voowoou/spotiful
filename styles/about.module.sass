@@ -1,13 +1,23 @@
+$powder: #FFFCF9
+$pink: #FF6978
+
+@mixin heading($size: 1.5rem, $weight:600)
+    font-size: $size
+    font-weight: $weight
+
+@mixin text($size: 1.25rem, $weight: 400)
+    font-size: $size
+    font-weight: $weight
+
 .aboutContainer
     h2
-        font-size: 1.5rem
-        font-weight: 600
+        @include heading
     div
         display: flex
         justify-content: space-between
         margin-top: 20px
         p
-            font-size: 1.25rem
+            @include text
             line-height: 2rem
             width: 45%
             min-width: 260px
@@ -28,7 +38,7 @@
             font-weight: 400
         div
             p
-                font-size: 1rem
-                line-height: 1.5rem
+                @include text($size: 1.125rem)
+                line-height: 1.8rem
 
             

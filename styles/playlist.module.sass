@@ -1,10 +1,21 @@
+$powder: #FFFCF9
+$pink: #FF6978
+
+@mixin heading($size: 1.5rem, $weight:600)
+    font-size: $size
+    font-weight: $weight
+
+@mixin text($size: 1.25rem, $weight: 400)
+    font-size: $size
+    font-weight: $weight
+
 .playlistContainer
     display: flex
     flex-direction: column
     width: 45%
     min-width: 260px
     h3
-        font-size: 1.5rem
+        @include heading($weight: 400)
         margin: 20px 0 30px 0
     form
         display: flex
@@ -14,8 +25,7 @@
             margin-bottom: 20px
             display: flex
             flex-wrap: nowrap
-            .textLabel,
-            span
+            .textLabel, span
                 width: 100%
                 font-size: 1.25rem
                 font-weight: 600
@@ -25,18 +35,18 @@
                 input
                     width: 100%
                     height: 40px
-                    border: 1px solid #FF6978
+                    border: 1px solid $pink
                     border-radius: 10px
-                    font-size: 1.25rem
                     vertical-align: middle
                     padding: 0 6px 2px 6px
                     margin-left: 20px
+                    @include text
                 label
-                    font-weight: 400
                     padding-left: 17%
                     display: flex
                     flex-wrap: nowrap
                     align-items: center
+                    @include text
                     .radioDefault
                         position: absolute
                         width: 1px
@@ -47,7 +57,7 @@
                         position: absolute
                         width: 20px
                         height: 20px
-                        border: 1px solid #FF6978
+                        border: 1px solid $pink
                         border-radius: 10px
                         margin-left: -26px
                     .radioDefault:checked + .radioCustom::before
@@ -55,7 +65,7 @@
                         width: 10px
                         height: 10px
                         border-radius: 5px
-                        background-color: #FF6978
+                        background-color: $pink
                         position: absolute
                         left: 50%
                         top: 50%
@@ -63,13 +73,12 @@
         .saveButton
             width: 100%
             height: 40px
-            border: 1px solid #FF6978
+            border: 1px solid $pink
             border-radius: 10px
-            font-size: 1.25rem
-            font-weight: 600
             padding-bottom: 1px
+            @include text($weight: 600)
             &:hover
-                background-color: #FF6978
+                background-color: $pink
 
 @media screen and (max-width: 768px) 
     .playlistContainer

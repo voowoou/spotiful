@@ -1,3 +1,10 @@
+$powder: #FFFCF9
+$pink: #FF6978
+
+@mixin heading($size: 1.5rem, $weight:600)
+    font-size: $size
+    font-weight: $weight
+    
 .headerContainer
     display: flex
     justify-content: space-between
@@ -5,13 +12,12 @@
     height: 8vw
     margin-bottom: 10px
     nav
-        font-size: 1.5rem
-        font-weight: 600
+        @include heading
         a
-            color: #FFFCF9
+            color: $powder
             margin-right: 3vw
             &:hover
-                color:#FF6978
+                color:$pink
             &:last-child
                 margin-right: 0
     .spotiful
@@ -20,9 +26,6 @@
         height: 36px
         svg
             width: 100%
-            max-width: 140px
-            height: auto
-            overflow: hidden
 
 @media screen and (max-width: 768px) 
     .headerContainer
@@ -33,6 +36,6 @@
             justify-content: space-between
             a
                 margin-right: 0
-                color: #FF6978
+                color: $pink
         .spotiful
             display: none
