@@ -8,25 +8,23 @@ import Footer from "@/components/Footer";
 
 export default function IndexPage() {
     const router = useRouter();
-    const [showContent, setShowContent] = useState(true);
-    const [accessTokenExpiresAt, setAccessTokenExpiresAt] = useState(null);
+    const [showContent, setShowContent] = useState(true); // If there's access token showContent sets to true
+    const [accessTokenExpiresAt, setAccessTokenExpiresAt] = useState(null); // Saves expiration time to handle redirect to login
 
     // To handle received token
     useEffect(() => {
         const handleToken = () => {
-            const accessTokenFragment = window.location.hash.slice(1); // Take string after # symbol
-            const accessToken = new URLSearchParams(accessTokenFragment).get("access_token"); // Take access_token param from URL search parameters
-            console.log(accessToken);
-            const expiresIn = new URLSearchParams(accessTokenFragment).get("expires_in");
+            const accessTokenFragment = window.location.hash.slice(1); // Takes string after # symbol
+            const accessToken = new URLSearchParams(accessTokenFragment).get("access_token"); // Takes access_token param from URL search parameters
+            const expiresIn = new URLSearchParams(accessTokenFragment).get("expires_in"); // Takes expires_in param from URL search parameters
     
             if (accessToken) {
-                const expirationTime = Date.now() + expiresIn * 1000;
-                sessionStorage.setItem('access_token', accessToken); // Save token to localStorage
-                sessionStorage.setItem('access_token_expires_at', expirationTime);
+                const expirationTime = Date.now() + expiresIn * 1000; // Calculates time when access token will expire
+                sessionStorage.setItem('access_token', accessToken); // Saves token
                 setAccessTokenExpiresAt(expirationTime)
             } else {
                 setShowContent(false);
-                router.push('/login');
+                router.push('/login'); // Redirect to login page
             }
         };
 
@@ -36,7 +34,8 @@ export default function IndexPage() {
     useEffect(() => {
         if(accessTokenExpiresAt) {
             const timeUntilExpiration = accessTokenExpiresAt - Date.now();
-            if (timeUntilExpiration > 0) {
+            // If the token didn't expire create a timeout function that redirect a user to the login page after expiring
+            if (timeUntilExpiration > 0) { 
                 const tokenRefreshTimeout = setTimeout(() => {
                     router.push('/login');
                 }, timeUntilExpiration);
@@ -45,13 +44,14 @@ export default function IndexPage() {
         }
     }, [accessTokenExpiresAt]);
 
+    // Content shows if showContent state is true
     return (
         <div className="container">
             <Head>
                 <title>Spotiful</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
-            {showContent && (
+            {showContent && ( 
                 <div>
                     <Header />
                     <Main />

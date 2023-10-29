@@ -3,6 +3,7 @@ import PlusIcon from "@/public/plus_icon.svg";
 import styles from "@/styles/search.module.sass";
 import listStyles from "@/styles/list.module.sass";
 
+// Return search bar
 function SearchBar({setSearchValue}) {
     const handleChange = (event) => {
         setSearchValue(event.target.value);
@@ -17,13 +18,16 @@ function SearchBar({setSearchValue}) {
     );
 };
 
+// Return list after user's search request
 function SearchList({tracksArray, tracksToAdd, setTracksToAdd}) {
+    // Add track after click on button 
     const handleClick = track => {
         if (!tracksToAdd.includes(track.id)) {
             setTracksToAdd((prevTracks) => [...prevTracks, track]);
         }
     };
 
+    // Render a list of found tracks
     const searchResults = tracksArray.map(track =>
         <li key={track.id} >
             <div className={listStyles.trackInfo} >
@@ -44,9 +48,10 @@ function SearchList({tracksArray, tracksToAdd, setTracksToAdd}) {
 };
 
 export default function Search({tracksToAdd, setTracksToAdd}) {
-    const [searchValue, setSearchValue] = useState("");
-    const [tracksArray, setTracksArray] = useState([]);
+    const [searchValue, setSearchValue] = useState(""); // Value from search field
+    const [tracksArray, setTracksArray] = useState([]); // Found tracks
 
+    // Get tracks via Spotify API
     useEffect(() => {
         const getTracks = async () => {
             if (searchValue) {
