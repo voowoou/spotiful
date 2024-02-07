@@ -25,5 +25,6 @@ In the list of project branches you can see:
 ![The login page](<image 2.png>)
 The login page
 
+
 ![The main page](<image 1.png>)
-The login page
+The main page
